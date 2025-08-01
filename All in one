@@ -1,0 +1,90 @@
+#include<iostream>
+
+using namespace std;
+
+void bubble(int arr[], int n){
+
+    for(int i=0;i<n-1;i++){
+        for(int j=0;j<n-i-1;j++){
+            if(arr[j]>arr[j+1]){
+                int temp=arr[j+1];
+                arr[j+1]=arr[j];
+                arr[j]=temp;
+            }
+        }
+    }
+
+
+
+}
+
+
+void insertion(int arr[],int n){
+
+    for(int i=1;i<n;i++){
+        int key=arr[i];
+        int j=i-1;
+        for(j=i-1;j>=0 && arr[j]>key;j--){
+            arr[j+1]=arr[j];
+        }
+        arr[j+1]=key;
+    }
+
+
+}
+
+void selection(int arr[], int n){
+
+    for(int i=0;i<n-1;i++){
+        int minind=i;
+        for(int j=i+1;j<n;j++){
+            if(arr[j]<arr[minind]){
+                minind=j;
+            }
+            int temp=arr[i];
+            arr[i]=arr[minind];
+            arr[minind]=temp;
+        }
+    }
+
+
+}
+
+
+
+
+int main(){
+
+int arr[]={8,7,4,1,9,2};
+
+int arr2[]={5,9,2,1,8,6};
+
+int arr3[]={3,9,2,1,7,4};
+
+bubble(arr,6);
+
+cout<<"using bubble sort:    ";
+
+for(int i=0;i<6;i++){
+    cout<<arr[i]<<" ";
+}
+
+insertion(arr2,6);
+
+
+cout<<endl<<"using insertion sort:    ";
+
+for(int i=0;i<6;i++){
+    cout<<arr2[i]<<" ";
+}
+
+selection(arr3,6);
+
+
+cout<<endl<<"using selecion sort:    ";
+
+for(int i=0;i<6;i++){
+    cout<<arr3[i]<<" ";
+}
+
+}
