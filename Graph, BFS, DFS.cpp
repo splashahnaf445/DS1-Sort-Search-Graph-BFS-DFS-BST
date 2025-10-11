@@ -1,28 +1,25 @@
 #include<iostream>
 #define SIZE 100
 #include<queue>
+#include<stack>
+
+// Constructing graph, addedge, print, BFS, DFS using stack, DFS recursive
 
 using namespace std;
 
-class graph{
-
+class Graph{
     bool directed;
-    int nvertex;
-
     int adj[SIZE][SIZE];
-
+    int n_vertex;
     bool visited[SIZE];
 
     public:
 
-
-    graph(int v, bool dir){
-        nvertex=v;
-
+    Graph(bool dir, int n){
         directed=dir;
-
-        for(int i=0;i<nvertex;i++){
-            for(int j=0;j<nvertex;j++){
+        n_vertex=n;
+        for(int i=0;i<n_vertex;i++){
+            for(int j=0;j<n_vertex;j++){
                 adj[i][j]=0;
             }
         }
@@ -30,93 +27,113 @@ class graph{
 
     void addedge(int u, int v){
         adj[u][v]=1;
-
         if(!directed){
             adj[v][u]=1;
         }
     }
 
-    void print(){
-        for(int i=0;i<nvertex;i++){
-            for(int j=0;j<nvertex;j++){
+    void printgraph(){
+        for(int i=0;i<n_vertex;i++){
+            for(int j=0;j<n_vertex;j++){
                 cout<<adj[i][j]<<" ";
             }
             cout<<endl;
+     }
     }
 
-    }
-    void BFS(int start){
-
-    queue<int> que;
-    que.push(start);
-    visited[start]=true;
-
-    cout<<"BFS traversal:   ";
-
-    while(!que.empty()){
-
-
-    int u=que.front();
-    que.pop();
-
-    cout<<u<<" ";
-
-    for(int i=0;i<nvertex;i++){
-        if(adj[u][i]==1 && !visited[i]){
-            que.push(i);
-            visited[i]=true;
+    void initvisited(){
+        for(int i=0;i<n_vertex;i++){
+            visited[i]=false;
         }
     }
 
+    void BFS(int start){
 
+         queue <int> q;
+         q.push(start);
+         visited[start]=true;
 
+         cout<<endl<<"BFS traversal:      ";
+
+         while(!q.empty()){
+        int u=q.front();
+        q.pop();
+
+         cout<<u<<" ";
+
+         for(int v=0;v<n_vertex;v++){
+            if(adj[u][v]==1 && !visited[v]){
+                q.push(v);
+                visited[v]=true;
+            }
+          }
+         }
     }
 
-}
-
-    void DFSrecursion(int start){
+    void DFSrec(int start){
         int u=start;
         visited[u]=true;
 
         cout<<u<<" ";
 
-        for(int v=0;v<nvertex;v++){
+        for(int v=0;v<n_vertex;v++){
             if(adj[u][v]==1 && !visited[v]){
-                DFSrecursion(v);
+                DFSrec(v);
             }
         }
+
     }
 
 
-    void initiallyvisited(){
-        for(int i=0;i<nvertex;i++){
-            visited[i]=false;
+    void DFS(int start){
+        stack <int> stk;
+
+        stk.push(start);
+        visited[start]=true;
+
+        while(!stk.empty()){
+                  int u=stk.top();
+                  stk.pop();
+                    cout<<u<<" ";
+
+
+            for(int v=0;v<n_vertex;v++){
+                if(adj[u][v]==1 && !visited[v]){
+                    stk.push(v);
+                    visited[u]=true;
+                }
+            }
+
         }
 
     }
+
 
 };
 
+
 int main(){
 
-graph G(6, false);
+Graph G(false, 6);
 
 G.addedge(0,1);
 G.addedge(0,2);
 G.addedge(1,3);
-G.addedge(1,4);
-G.addedge(2,5);
+G.addedge(1,5);
+G.addedge(2,4);
 
-G.print();
+G.printgraph();
 
-G.initiallyvisited();
+G.initvisited();
 G.BFS(0);
 
-G.initiallyvisited();
+G.initvisited();
+cout<<endl<<"DFS recursive traversal:       ";
+G.DFSrec(0);
 
-cout<<endl<<"DFS traversal using recursion:   ";
-G.DFSrecursion(0);
+G.initvisited();
+cout<<endl<<"DFS using stack traversal:       ";
+G.DFS(0);
 
 
 }
-
