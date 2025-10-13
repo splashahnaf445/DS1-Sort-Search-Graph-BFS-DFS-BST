@@ -9,8 +9,8 @@ Task 1: Represent a Graph Using Adjacency Matrix and Adjacency List
 Problem: Write a program to represent a graph using both an adjacency matrix and an
 adjacency list. Implement functions to add edges and display the graph representation.
 Example Input:
-• Number of vertices: 4
-• Edges: (1, 2), (1, 3), (2, 4)
+â€¢ Number of vertices: 4
+â€¢ Edges: (1, 2), (1, 3), (2, 4)
 Adjacency List:
 1: 2, 3
 2: 1, 4
@@ -22,9 +22,9 @@ Adjacency List:
 Problem: Write a program to perform Depth-First Search (DFS) on a graph and print
 the traversal order.
 Example Input:
-• Number of vertices: 5
-• Edges: (1, 2), (1, 3), (2, 4), (2, 5)
-• Starting node: 1
+â€¢ Number of vertices: 5
+â€¢ Edges: (1, 2), (1, 3), (2, 4), (2, 5)
+â€¢ Starting node: 1
 
 */
 
@@ -32,8 +32,8 @@ Example Input:
 Task 3: Check if a Graph is Bipartite
 Problem: Write a program to check whether a given graph is bipartite using BFS.
 Example Input:
-• Number of vertices: 4
-• Edges: (1, 2), (2, 3), (3, 4), (4, 1)
+â€¢ Number of vertices: 4
+â€¢ Edges: (1, 2), (2, 3), (3, 4), (4, 1)
 Example Output:
 Graph is Bipartite: Yes
 */
